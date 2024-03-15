@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  formigas:
+    build:
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - traefik_web
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.formigas.rule=Host(`formigas.homelab`, `formigas.oesterlin.dev`)'
+      - 'traefik.http.services.formigas.loadbalancer.server.port=3000'
+    env_file: .env.local
+
+networks:
+  traefik_web:
+    external: true
