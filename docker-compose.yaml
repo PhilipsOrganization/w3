@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  w3:
+    build:
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - traefik_web
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.w3.rule=Host(`w3.homelab`, `w3.oesterlin.dev`)'
+      - 'traefik.http.services.w3.loadbalancer.server.port=3000'
+    env_file: .env.local
+
+networks:
+  traefik_web:
+    external: true

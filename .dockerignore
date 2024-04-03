@@ -1,0 +1,10 @@
+.git/
+.gitignore
+.svelte-kit/
+node_modules/
+
+.DS_Store
+/build
+/package
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
